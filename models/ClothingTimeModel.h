@@ -21,22 +21,26 @@
  ** CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *********************************************************************************/
 
-#include "IndexView.h"
-#include "models/ClothingTimeModel.h"
+#ifndef CLOTHINGTIMEMODEL_H
+#define CLOTHINGTIMEMODEL_H
 
-void IndexView::render(Grantlee::Engine *templateEngine, QTextStream &stream)
+#include <system/web/model/AbstractModel.h>
+
+class ClothingTimeModelPrivate;
+
+class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
 {
-    Grantlee::OutputStream output(&stream);
+        Q_OBJECT
+    public:
+        explicit ClothingTimeModel(QObject *parent = 0);
 
-    Grantlee::Template tem = templateEngine->loadByName("index.html");
+    private:
+        Q_DECLARE_PRIVATE(ClothingTimeModel)
+};
 
-    Grantlee::Context context;
+typedef QList<ClothingTimeModel *> ClothingTimeModelList;
 
-    ClothingTimeModelList clothingTimes;
-    clothingTimes << new ClothingTimeModel;
-    clothingTimes << new ClothingTimeModel;
+Q_DECLARE_METATYPE(ClothingTimeModel)
+Q_DECLARE_METATYPE(ClothingTimeModelList)
 
-    context.insert(QLatin1String("times"), QVariant::fromValue(clothingTimes));
-
-    tem->render(&output, &context);
-}
+#endif // CLOTHINGTIMEMODEL_H

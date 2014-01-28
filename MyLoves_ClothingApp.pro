@@ -17,11 +17,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     ClothingWebsite.cpp \
-    views/IndexView.cpp
+    views/IndexView.cpp \
+    models/ClothModel.cpp \
+    models/ClothingTimeModel.cpp
 
 HEADERS += \
     ClothingWebsite.h \
-    views/IndexView.h
+    views/IndexView.h \
+    models/ClothModel.h \
+    models/ClothingTimeModel.h
 
 OTHER_FILES += \
     templates/index.html

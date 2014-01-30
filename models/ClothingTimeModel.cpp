@@ -25,6 +25,8 @@
 
 #include <system/web/model/AbstractModel_p.h>
 
+#include <QtCore/QDebug>
+
 int clothing_time_model_id = qRegisterMetaType<ClothingTimeModel *>("ClothingTimeModelPtr");
 
 PU_DEFINE_MANAGER(ClothingTimeModel)
@@ -35,7 +37,12 @@ class ClothingTimeModelPrivate : public PublicServerSystem::Web::Model::Abstract
 };
 
 ClothingTimeModel::ClothingTimeModel(QObject *parent) :
-    PublicServerSystem::Web::Model::AbstractModel(new ClothingTimeModelPrivate, parent)
+    ClothingTimeModel(0, parent)
+{
+}
+
+ClothingTimeModel::ClothingTimeModel(arangodb::Document *doc, QObject *parent) :
+    PublicServerSystem::Web::Model::AbstractModel(doc, new ClothingTimeModelPrivate, parent)
 {
 }
 

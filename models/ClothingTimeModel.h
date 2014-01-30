@@ -35,6 +35,7 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
         Q_PROPERTY(QString title READ title WRITE setTitle)
     public:
         explicit ClothingTimeModel(QObject *parent = 0);
+        ClothingTimeModel(arangodb::Document * doc, QObject *parent = 0);
 
         QString title() const;
         void setTitle(const QString & title);

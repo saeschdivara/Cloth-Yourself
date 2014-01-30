@@ -25,14 +25,21 @@
 #define CLOTHINGTIMEMODEL_H
 
 #include <system/web/model/AbstractModel.h>
+#include <system/web/model/ModelManager.h>
 
 class ClothingTimeModelPrivate;
 
 class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
 {
         Q_OBJECT
+        Q_PROPERTY(QString title READ title WRITE setTitle)
     public:
         explicit ClothingTimeModel(QObject *parent = 0);
+
+        QString title() const;
+        void setTitle(const QString & title);
+
+        PU_DECLARE_MANAGER(ClothingTimeModel);
 
     private:
         Q_DECLARE_PRIVATE(ClothingTimeModel)

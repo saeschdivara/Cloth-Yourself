@@ -32,9 +32,7 @@ void IndexView::render(Grantlee::Engine *templateEngine, QTextStream &stream)
 
     Grantlee::Context context;
 
-    ClothingTimeModelList clothingTimes;
-    clothingTimes << new ClothingTimeModel;
-    clothingTimes << new ClothingTimeModel;
+    ClothingTimeModelList clothingTimes = ClothingTimeModel::objects->all();
 
     context.insert(QLatin1String("times"), QVariant::fromValue(clothingTimes));
 

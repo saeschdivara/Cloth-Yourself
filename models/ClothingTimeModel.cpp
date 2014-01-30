@@ -27,6 +27,8 @@
 
 int clothing_time_model_id = qRegisterMetaType<ClothingTimeModel *>("ClothingTimeModelPtr");
 
+PU_DEFINE_MANAGER(ClothingTimeModel)
+
 class ClothingTimeModelPrivate : public PublicServerSystem::Web::Model::AbstractModelPrivate
 {
     public:
@@ -35,4 +37,14 @@ class ClothingTimeModelPrivate : public PublicServerSystem::Web::Model::Abstract
 ClothingTimeModel::ClothingTimeModel(QObject *parent) :
     PublicServerSystem::Web::Model::AbstractModel(new ClothingTimeModelPrivate, parent)
 {
+}
+
+QString ClothingTimeModel::title() const
+{
+    return get("title").toString();
+}
+
+void ClothingTimeModel::setTitle(const QString &title)
+{
+    set("title", title);
 }

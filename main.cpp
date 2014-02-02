@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
     PublicServerSystem::Web::Server * webserver = new PublicServerSystem::Web::Server;
 
     webserver->listenOnNormalConnections(QHostAddress::Any, 8080);
+    webserver->setStaticFilesDir("site-statics", "statics");
 
     webserver->addWebsite("localhost", new ClothingWebsite);
 

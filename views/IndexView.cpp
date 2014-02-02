@@ -24,17 +24,15 @@
 #include "IndexView.h"
 #include "models/ClothingTimeModel.h"
 
-void IndexView::render(Grantlee::Engine *templateEngine, QTextStream &stream)
+void IndexView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext)
 {
     Grantlee::OutputStream output(&stream);
 
     Grantlee::Template tem = templateEngine->loadByName("index.html");
 
-    Grantlee::Context context;
-
     ClothingTimeModelList clothingTimes = ClothingTimeModel::objects->all();
 
-    context.insert(QLatin1String("times"), QVariant::fromValue(clothingTimes));
+    requestContext->insert(QLatin1String("times"), QVariant::fromValue(clothingTimes));
 
-    tem->render(&output, &context);
+    tem->render(&output, requestContext);
 }

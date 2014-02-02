@@ -30,7 +30,7 @@ class IndexView : public PublicServerSystem::Web::View::ViewInterface
 {
         // ViewInterface interface
     public:
-        virtual void render(Grantlee::Engine *templateEngine, QTextStream &stream);
+        virtual void render(QTextStream & stream, Grantlee::Engine * templateEngine, Grantlee::Context * requestContext);
 };
 
 #endif // INDEXVIEW_H

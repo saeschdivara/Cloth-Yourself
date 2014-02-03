@@ -25,6 +25,8 @@
 
 #include <system/web/model/AbstractModel_p.h>
 
+#include <system/web/form/CharField.h>
+
 #include <QtCore/QDebug>
 
 int clothing_time_model_id = qRegisterMetaType<ClothingTimeModel *>("ClothingTimeModelPtr");
@@ -54,4 +56,9 @@ QString ClothingTimeModel::title() const
 void ClothingTimeModel::setTitle(const QString &title)
 {
     set("title", title);
+}
+
+PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::titleField()
+{
+    return field("title", PublicServerSystem::Web::Form::CharField::staticMetaObject);
 }

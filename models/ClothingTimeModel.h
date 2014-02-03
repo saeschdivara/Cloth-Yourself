@@ -24,6 +24,8 @@
 #ifndef CLOTHINGTIMEMODEL_H
 #define CLOTHINGTIMEMODEL_H
 
+#include <system/web/form/AbstractFormField.h>
+
 #include <system/web/model/AbstractModel.h>
 #include <system/web/model/ModelManager.h>
 
@@ -33,12 +35,15 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
 {
         Q_OBJECT
         Q_PROPERTY(QString title READ title WRITE setTitle)
+        Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* title_field READ titleField)
     public:
         explicit ClothingTimeModel(QObject *parent = 0);
         ClothingTimeModel(arangodb::Document * doc, QObject *parent = 0);
 
         QString title() const;
         void setTitle(const QString & title);
+
+        PublicServerSystem::Web::Form::AbstractFormField * titleField();
 
         PU_DECLARE_MANAGER(ClothingTimeModel);
 

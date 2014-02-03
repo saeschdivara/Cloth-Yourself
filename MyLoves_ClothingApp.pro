@@ -19,13 +19,15 @@ SOURCES += main.cpp \
     ClothingWebsite.cpp \
     views/IndexView.cpp \
     models/ClothModel.cpp \
-    models/ClothingTimeModel.cpp
+    models/ClothingTimeModel.cpp \
+    views/ClothingTimeView.cpp
 
 HEADERS += \
     ClothingWebsite.h \
     views/IndexView.h \
     models/ClothModel.h \
-    models/ClothingTimeModel.h
+    models/ClothingTimeModel.h \
+    views/ClothingTimeView.h
 
 OTHER_FILES += \
     templates/index.html

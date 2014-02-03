@@ -21,38 +21,18 @@
  ** CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *********************************************************************************/
 
-#include "ClothingWebsite.h"
+#include "ClothingTimeView.h"
 
-#include "views/IndexView.h"
-#include "views/ClothingTimeView.h"
+#include "models/ClothingTimeModel.h"
 
-#include <system/web/AbstractSite_p.h>
+#include <system/web/form/ModelForm.h>
 
-#include <lib/cachingloaderdecorator.h>
-#include <lib/engine.h>
-#include <lib/template.h>
-
-#include <QtCore/QDebug>
-
-class ClothingWebsitePrivate : public PublicServerSystem::Web::AbstractSitePrivate
+void ClothingTimeView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext)
 {
-    public:
-};
+    ClothingTimeModel * model = ClothingTimeModel::objects->get("134746410");
+    qDebug() << model;
 
-ClothingWebsite::ClothingWebsite(QObject *parent) :
-    PublicServerSystem::Web::AbstractSite(new ClothingWebsitePrivate, parent)
-{
-    Q_D(ClothingWebsite);
+    PublicServerSystem::Web::Form::ModelForm<ClothingTimeModel> form(model);
 
-    Grantlee::FileSystemTemplateLoader::Ptr loader( new Grantlee::FileSystemTemplateLoader() );
-    // This path should point to the source of this code
-    loader->setTemplateDirs( QStringList() << "./templates" );
-
-    Grantlee::CachingLoaderDecorator::Ptr cache( new Grantlee::CachingLoaderDecorator( loader ) );
-    d->engine->addTemplateLoader(cache);
-
-    d->engine->addPluginPath("./plugins");
-
-    addView(QLatin1String("^/clothing-time/"), new ClothingTimeView);
-    addView(QLatin1String("^/"), new IndexView);
+    auto fields = form.getAllFields();
 }

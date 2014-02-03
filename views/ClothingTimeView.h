@@ -21,38 +21,16 @@
  ** CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *********************************************************************************/
 
-#include "ClothingWebsite.h"
+#ifndef CLOTHINGTIMEVIEW_H
+#define CLOTHINGTIMEVIEW_H
 
-#include "views/IndexView.h"
-#include "views/ClothingTimeView.h"
+#include <system/web/view/ViewInterface.h>
 
-#include <system/web/AbstractSite_p.h>
-
-#include <lib/cachingloaderdecorator.h>
-#include <lib/engine.h>
-#include <lib/template.h>
-
-#include <QtCore/QDebug>
-
-class ClothingWebsitePrivate : public PublicServerSystem::Web::AbstractSitePrivate
+class ClothingTimeView : public PublicServerSystem::Web::View::ViewInterface
 {
+        // ViewInterface interface
     public:
+        virtual void render(QTextStream & stream, Grantlee::Engine * templateEngine, Grantlee::Context * requestContext);
 };
 
-ClothingWebsite::ClothingWebsite(QObject *parent) :
-    PublicServerSystem::Web::AbstractSite(new ClothingWebsitePrivate, parent)
-{
-    Q_D(ClothingWebsite);
-
-    Grantlee::FileSystemTemplateLoader::Ptr loader( new Grantlee::FileSystemTemplateLoader() );
-    // This path should point to the source of this code
-    loader->setTemplateDirs( QStringList() << "./templates" );
-
-    Grantlee::CachingLoaderDecorator::Ptr cache( new Grantlee::CachingLoaderDecorator( loader ) );
-    d->engine->addTemplateLoader(cache);
-
-    d->engine->addPluginPath("./plugins");
-
-    addView(QLatin1String("^/clothing-time/"), new ClothingTimeView);
-    addView(QLatin1String("^/"), new IndexView);
-}
+#endif // CLOTHINGTIMEVIEW_H

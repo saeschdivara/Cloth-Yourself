@@ -30,7 +30,9 @@ HEADERS += \
     views/ClothingTimeView.h
 
 OTHER_FILES += \
-    templates/index.html
+    templates/index.html \
+    templates/ClothingTimeView.html \
+    templates/base.html
 
 QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11

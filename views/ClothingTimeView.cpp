@@ -29,10 +29,18 @@
 
 void ClothingTimeView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext)
 {
+    Grantlee::OutputStream output(&stream);
+
+    Grantlee::Template tem = templateEngine->loadByName("ClothingTimeModelView.html");
     ClothingTimeModel * model = ClothingTimeModel::objects->get("134746410");
-    qDebug() << model;
 
     PublicServerSystem::Web::Form::ModelForm<ClothingTimeModel> form(model);
 
-    auto fields = form.getAllFields();
+    QString formOutput = form.toString();
+
+    requestContext->insert(QLatin1String("editing_form"), formOutput);
+
+    tem->render(&output, requestContext);
+
+    model->deleteLater();
 }

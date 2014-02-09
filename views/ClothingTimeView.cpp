@@ -27,11 +27,19 @@
 
 #include <system/web/form/ModelForm.h>
 
+#include <lib/template.h>
+
 void ClothingTimeView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext)
 {
     Grantlee::OutputStream output(&stream);
 
-    Grantlee::Template tem = templateEngine->loadByName("ClothingTimeModelView.html");
+    Grantlee::Template tem = templateEngine->loadByName("ClothingTimeView.html");
+
+    if (tem->error() != Grantlee::NoError) {
+        qDebug() << tem->errorString();
+    }
+
+
     ClothingTimeModel * model = ClothingTimeModel::objects->get("134746410");
 
     PublicServerSystem::Web::Form::ModelForm<ClothingTimeModel> form(model);

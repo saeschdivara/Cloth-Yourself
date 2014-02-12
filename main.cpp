@@ -41,7 +41,6 @@ int main(int argc, char *argv[])
     webserver->addWebsite("localhost", new ClothingWebsite);
 
     sys.addServer(webserver);
-    sys.startUp();
 
-    return app.exec();
+    return sys.startUp();
 }

@@ -60,5 +60,5 @@ void ClothingTimeModel::setTitle(const QString &title)
 
 PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::titleField()
 {
-    return field("title", PublicServerSystem::Web::Form::CharField::staticMetaObject);
+    return field<PublicServerSystem::Web::Form::CharField>("title", "The title");
 }

@@ -26,13 +26,9 @@
 
 void IndexView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext, PublicServerSystem::Web::UserSession *userSession)
 {
-    Grantlee::OutputStream output(&stream);
-
-    Grantlee::Template tem = templateEngine->loadByName("index.html");
-
     ClothingTimeModelList clothingTimes = ClothingTimeModel::objects->all();
 
     requestContext->insert(QLatin1String("times"), QVariant::fromValue(clothingTimes));
 
-    tem->render(&output, requestContext);
+    PublicServerSystem::Web::View::render("index.html", stream, templateEngine, requestContext);
 }

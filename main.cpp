@@ -21,7 +21,8 @@
  ** CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *********************************************************************************/
 
-#include <QCoreApplication>
+#include <QtCore/QCoreApplication>
+#include <QtCore/QDir>
 
 #include <system/core/System.h>
 #include <system/web/Server.h>
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
     PublicServerSystem::Web::Server * webserver = new PublicServerSystem::Web::Server;
 
     webserver->listenOnNormalConnections(QHostAddress::Any, 8080);
-    webserver->setStaticFilesDir("site-statics", "statics");
+    webserver->setStaticFilesDir(QDir::currentPath() + "/site-statics", "statics");
 
     webserver->addWebsite("localhost", new ClothingWebsite);
 

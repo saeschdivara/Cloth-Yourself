@@ -34,13 +34,6 @@ void ClothingTimeView::render(QTextStream &stream,
                               Grantlee::Context *requestContext,
                               PublicServerSystem::Web::UserSession *session)
 {
-    Grantlee::OutputStream output(&stream);
-
-    Grantlee::Template tem = templateEngine->loadByName("ClothingTimeView.html");
-
-    if (tem->error() != Grantlee::NoError) {
-        qDebug() << tem->errorString();
-    }
 
 
     ClothingTimeModel * model = ClothingTimeModel::objects->get("134746410");
@@ -51,7 +44,7 @@ void ClothingTimeView::render(QTextStream &stream,
 
     requestContext->insert(QLatin1String("editing_form"), formOutput);
 
-    tem->render(&output, requestContext);
+    PublicServerSystem::Web::View::render("ClothingTimeView.html", stream, templateEngine, requestContext);
 
     model->deleteLater();
 }

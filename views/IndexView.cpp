@@ -24,7 +24,7 @@
 #include "IndexView.h"
 #include "models/ClothingTimeModel.h"
 
-void IndexView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext)
+void IndexView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext, PublicServerSystem::Web::UserSession *userSession)
 {
     Grantlee::OutputStream output(&stream);
 

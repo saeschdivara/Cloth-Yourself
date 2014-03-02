@@ -29,7 +29,10 @@
 
 #include <lib/template.h>
 
-void ClothingTimeView::render(QTextStream &stream, Grantlee::Engine *templateEngine, Grantlee::Context *requestContext)
+void ClothingTimeView::render(QTextStream &stream,
+                              Grantlee::Engine *templateEngine,
+                              Grantlee::Context *requestContext,
+                              PublicServerSystem::Web::UserSession *session)
 {
     Grantlee::OutputStream output(&stream);
 

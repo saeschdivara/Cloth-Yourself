@@ -29,6 +29,18 @@
 
 #include "ClothingWebsite.h"
 
+QString realPath(const QString & path) {
+    QString realPath;
+    QStringList splittedPath = path.split(QDir::separator());
+    for ( QString pathPart : splittedPath ) {
+        if ( pathPart.endsWith(".app") ) break;
+        realPath += pathPart + QDir::separator();
+    }
+
+    return realPath;
+}
+
+
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
@@ -37,7 +49,7 @@ int main(int argc, char *argv[])
     PublicServerSystem::Web::Server * webserver = new PublicServerSystem::Web::Server;
 
     webserver->listenOnNormalConnections(QHostAddress::Any, 8080);
-    webserver->setStaticFilesDir(QDir::currentPath() + "/site-statics", "statics");
+    webserver->setStaticFilesDir(realPath(QDir::currentPath()) + "site-statics", "statics");
 
     webserver->addWebsite("localhost", new ClothingWebsite);
 

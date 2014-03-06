@@ -48,8 +48,12 @@ ClothingWebsite::ClothingWebsite(QObject *parent) :
     // This path should point to the source of this code
     loader->setTemplateDirs( QStringList() << "./templates" );
 
+#ifdef Q_NO_DEBUG
     Grantlee::CachingLoaderDecorator::Ptr cache( new Grantlee::CachingLoaderDecorator( loader ) );
     d->engine->addTemplateLoader(cache);
+#else
+    d->engine->addTemplateLoader(loader);
+#endif
 
     d->engine->addPluginPath("./plugins");
 

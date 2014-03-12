@@ -25,6 +25,8 @@
 
 #include <system/web/model/AbstractModel_p.h>
 
+PU_DEFINE_MANAGER(ClothModel)
+
 class ClothModelPrivate : public PublicServerSystem::Web::Model::AbstractModelPrivate
 {
     public:

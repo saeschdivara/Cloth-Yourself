@@ -25,6 +25,7 @@
 #define CLOTHMODEL_H
 
 #include <system/web/model/AbstractModel.h>
+#include <system/web/model/ModelManager.h>
 
 class ClothModelPrivate;
 
@@ -37,6 +38,8 @@ class ClothModel : public PublicServerSystem::Web::Model::AbstractModel
 
         QString name() const;
         void setName(const QString & name);
+
+        PU_DECLARE_MANAGER(ClothModel);
 
     private:
         Q_DECLARE_PRIVATE(ClothModel)

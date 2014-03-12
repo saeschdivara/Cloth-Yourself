@@ -34,15 +34,22 @@ void ClothingTimeView::render(QTextStream &stream,
                               Grantlee::Context *requestContext,
                               PublicServerSystem::Web::UserSession *session)
 {
-    QString id = session->post.value("id");
+    QHash<QString, QString> postData = session->post();
+    QString id = postData.value("id");
     ClothingTimeModel * model = Q_NULLPTR;
 
-    if ( !id.isEmpty() )
+    if ( !id.isEmpty() ) {
         model = ClothingTimeModel::objects->get(id);
-    else
-        model = ClothingTimeModel::objects->create();
+    }
 
-    PublicServerSystem::Web::Form::ModelForm<ClothingTimeModel> form(model, &session->post);
+    if ( model == Q_NULLPTR ) {
+        model = ClothingTimeModel::objects->create();
+        model->save();
+    }
+
+    PublicServerSystem::Web::Form::ModelForm form(model, &postData);
+
+    if ( form.isValid() ) form.save();
 
     QString formOutput = form.toString();
 

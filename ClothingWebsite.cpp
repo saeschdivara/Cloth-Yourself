@@ -23,6 +23,9 @@
 
 #include "ClothingWebsite.h"
 
+#include "models/ClothingTimeModel.h"
+#include "models/ClothModel.h"
+
 #include "views/IndexView.h"
 #include "views/ClothingTimeView.h"
 
@@ -59,4 +62,7 @@ ClothingWebsite::ClothingWebsite(QObject *parent) :
 
     addView(QLatin1String("^/clothing-time/"), new ClothingTimeView);
     addView(QLatin1String("^/"), new IndexView);
+
+    ClothingTimeModel::objects->registerDatabaseModel();
+    ClothModel::objects->registerDatabaseModel();
 }

@@ -26,6 +26,7 @@
 #include <system/web/model/AbstractModel_p.h>
 
 #include <system/web/form/CharField.h>
+#include <system/web/form/ImageField.h>
 
 #include <QtCore/QDebug>
 
@@ -61,4 +62,19 @@ void ClothingTimeModel::setTitle(const QString &title)
 PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::titleField()
 {
     return field<PublicServerSystem::Web::Form::CharField>("title", "The title");
+}
+
+QString ClothingTimeModel::image() const
+{
+    return get("image").toString();
+}
+
+void ClothingTimeModel::setImage(const QString &image)
+{
+    set("image", image);
+}
+
+PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::imageField()
+{
+    return field<PublicServerSystem::Web::Form::ImageField>("image", "Image");
 }

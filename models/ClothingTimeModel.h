@@ -36,14 +36,23 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
         Q_OBJECT
         Q_PROPERTY(QString title READ title WRITE setTitle)
         Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* title_field READ titleField)
+        Q_PROPERTY(QString image READ image WRITE setImage)
+        Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* image_field READ imageField)
     public:
         explicit ClothingTimeModel(QObject *parent = 0);
         ClothingTimeModel(arangodb::Document * doc, QObject *parent = 0);
 
+        // Title
         QString title() const;
         void setTitle(const QString & title);
 
         PublicServerSystem::Web::Form::AbstractFormField * titleField();
+
+        // Image
+        QString image() const;
+        void setImage(const QString & image);
+
+        PublicServerSystem::Web::Form::AbstractFormField * imageField();
 
         PU_DECLARE_MANAGER(ClothingTimeModel);
 

@@ -38,6 +38,7 @@ QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11
 
 CONFIG(release, debug|release): {
+    LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/qt-http-server/release/ -lQt-Web-Server
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/tufao/release/ -ltufao
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/arangodb-driver/release/ -larangodb-driver
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/grantlee/template_library/release/ -ltemplate_library
@@ -45,12 +46,16 @@ CONFIG(release, debug|release): {
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/smpt-client-qt/release/ -lSMTPEmail
 }
 else:CONFIG(debug, debug|release): {
+    LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/qt-http-server/debug/ -lQt-Web-Server
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/tufao/debug/ -ltufao
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/arangodb-driver/debug/ -larangodb-driver
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/grantlee/template_library/debug/ -ltemplate_library
     LIBS += -L$$PWD/../Public-Server-System/dist/Public-Server-System/debug/ -lPublic-Server-System
     LIBS += -L$$PWD/../Public-Server-System/dist/3rdparty/smpt-client-qt/debug/ -lSMTPEmail
 }
+
+INCLUDEPATH += $$PWD/../Public-Server-System/3rdparty/qt-http-server/src
+DEPENDPATH += $$PWD/../Public-Server-System/3rdparty/qt-http-server/src
 
 INCLUDEPATH += $$PWD/../Public-Server-System/3rdparty/tufao/src
 DEPENDPATH += $$PWD/../Public-Server-System/3rdparty/tufao/src

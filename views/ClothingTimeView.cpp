@@ -32,9 +32,9 @@
 void ClothingTimeView::render(QTextStream &stream,
                               Grantlee::Engine *templateEngine,
                               Grantlee::Context *requestContext,
-                              PublicServerSystem::Web::UserSession *session)
+                              QtWebRequest *request)
 {
-    QHash<QString, QString> postData = session->post();
+    QHash<QByteArray, QByteArray> postData = request->post();
     QString id = postData.value("id");
     ClothingTimeModel * model = Q_NULLPTR;
 

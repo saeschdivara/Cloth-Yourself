@@ -24,7 +24,6 @@
 #ifndef CLOTHINGTIMEVIEW_H
 #define CLOTHINGTIMEVIEW_H
 
-#include <system/web/UserSession.h>
 #include <system/web/view/ViewInterface.h>
 
 class ClothingTimeView : public PublicServerSystem::Web::View::ViewInterface
@@ -32,7 +31,7 @@ class ClothingTimeView : public PublicServerSystem::Web::View::ViewInterface
         // ViewInterface interface
     public:
         virtual void render(QTextStream & stream, Grantlee::Engine * templateEngine, Grantlee::Context * requestContext,
-                            PublicServerSystem::Web::UserSession * session);
+                            QtWebRequest * request);
 };
 
 #endif // CLOTHINGTIMEVIEW_H

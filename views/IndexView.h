@@ -24,7 +24,6 @@
 #ifndef INDEXVIEW_H
 #define INDEXVIEW_H
 
-#include <system/web/UserSession.h>
 #include <system/web/view/ViewInterface.h>
 
 class IndexView : public PublicServerSystem::Web::View::ViewInterface
@@ -32,7 +31,7 @@ class IndexView : public PublicServerSystem::Web::View::ViewInterface
         // ViewInterface interface
     public:
         virtual void render(QTextStream & stream, Grantlee::Engine * templateEngine, Grantlee::Context * requestContext,
-                            PublicServerSystem::Web::UserSession * userSession);
+                            QtWebRequest * request);
 };
 
 #endif // INDEXVIEW_H

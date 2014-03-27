@@ -32,7 +32,8 @@ HEADERS += \
 OTHER_FILES += \
     templates/index.html \
     templates/ClothingTimeView.html \
-    templates/base.html
+    templates/base.html \
+    site-statics/css/styles.css
 
 QMAKE_CXXFLAGS += -std=c++11
 CONFIG += c++11

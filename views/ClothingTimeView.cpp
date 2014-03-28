@@ -26,8 +26,21 @@
 #include "models/ClothingTimeModel.h"
 
 #include <system/web/form/ModelForm.h>
-
+//
 #include <lib/template.h>
+
+// Qt
+#include <QtCore/QDir>
+#include <QtCore/QFile>
+
+QString realPath(const QString & path);
+
+QString getFileName(const QString & fullpath) {
+    QString name;
+    QStringList splittedPath = fullpath.split(QDir::separator());
+    name = splittedPath.last();
+    return name;
+}
 
 void ClothingTimeView::render(QTextStream &stream,
                               Grantlee::Engine *templateEngine,
@@ -49,7 +62,35 @@ void ClothingTimeView::render(QTextStream &stream,
 
     PublicServerSystem::Web::Form::ModelForm form(model, &postData);
 
-    if ( form.isValid() ) form.save();
+    if ( form.isValid() ) {
+        form.syncModel();
+
+        QString filePath = model->image();
+        QFile file(filePath);
+
+        if ( file.open(QIODevice::ReadWrite) ) {
+            // TODO: review this
+            QString mediaPath = realPath(QDir::currentPath()) + "media-files";
+            QString mediaUrl = ClothingTimeModel::objects->getCollectionName() + "/" + getFileName(filePath);
+            QString newFilePath = mediaPath + "/" + mediaUrl;
+
+            QDir thisPath(mediaPath);
+            thisPath.mkdir(ClothingTimeModel::objects->getCollectionName());
+
+            if ( file.copy(newFilePath) ) {
+                model->setImage(newFilePath);
+                model->setImageUrl(mediaUrl);
+
+                file.remove();
+
+                form.save();
+            }
+            else {
+                qDebug() << QString("file.copy(%1)").arg(newFilePath) << file.errorString();
+            }
+        }
+
+    }
 
     QString formOutput = form.toString();
 

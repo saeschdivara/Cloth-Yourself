@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 
     webserver->listenOnNormalConnections(QHostAddress::Any, 8080);
     webserver->setStaticFilesDir(realPath(QDir::currentPath()) + "site-statics", "statics");
+    webserver->setMediaDir(realPath(QDir::currentPath()) + "media-files", "media");
 
     webserver->addWebsite("localhost", new ClothingWebsite);
 

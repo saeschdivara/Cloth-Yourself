@@ -4,6 +4,10 @@
     {% for clothing_time in times %}
         <div class="clothing-time-container">
             <h1>{{ clothing_time.title }}</h1>
+
+            {% if clothing_time.image_url %}
+                <img src="{{ MEDIA_URL }}{{ clothing_time.image_url }}" />
+            {% endif %}
         </div>
     {% endfor %}
 {% endblock %}

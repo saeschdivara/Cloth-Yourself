@@ -45,10 +45,11 @@ QString getFileName(const QString & fullpath) {
 void ClothingTimeView::render(QTextStream &stream,
                               Grantlee::Engine *templateEngine,
                               Grantlee::Context *requestContext,
-                              QtWebRequest *request)
+                              QtWebRequest *request,
+                              QHash<QString, QString> requestParameters)
 {
     QHash<QByteArray, QByteArray> postData = request->post();
-    QString id = postData.value("id");
+    QString id = requestParameters.value("id");
     ClothingTimeModel * model = Q_NULLPTR;
 
     if ( !id.isEmpty() ) {

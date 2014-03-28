@@ -30,8 +30,10 @@ class ClothingTimeView : public PublicServerSystem::Web::View::ViewInterface
 {
         // ViewInterface interface
     public:
-        virtual void render(QTextStream & stream, Grantlee::Engine * templateEngine, Grantlee::Context * requestContext,
-                            QtWebRequest * request);
+        virtual void render(QTextStream & stream,
+                            Grantlee::Engine * templateEngine, Grantlee::Context * requestContext,
+                            QtWebRequest * request,
+                            QHash<QString, QString> requestParameters);
 };
 
 #endif // CLOTHINGTIMEVIEW_H

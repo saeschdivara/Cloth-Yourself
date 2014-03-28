@@ -60,7 +60,7 @@ ClothingWebsite::ClothingWebsite(QObject *parent) :
 
     d->engine->addPluginPath("./plugins");
 
-    addView(QLatin1String("^/clothing-time/"), new ClothingTimeView);
+    addView(QLatin1String("^/clothing-time/(?<id>\\d+)/"), new ClothingTimeView);
     addView(QLatin1String("^/"), new IndexView);
 
     ClothingTimeModel::objects->registerDatabaseModel();

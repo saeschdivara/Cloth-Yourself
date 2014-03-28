@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>My clothing page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends "base.html" %}
 
-    <!-- Stylesheets -->
-    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- Scripts -->
-    <script src="{{ STATIC_URL }}js/jquery/jquery-2.1.0.min.js"></script>
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
+{% block content %}
     {% for clothing_time in times %}
         <div class="clothing-time-container">
             <h1>{{ clothing_time.title }}</h1>
         </div>
     {% endfor %}
-</body>
-</html>
+{% endblock %}

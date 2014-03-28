@@ -69,6 +69,16 @@ QString ClothingTimeModel::image() const
     return get("image").toString();
 }
 
+QString ClothingTimeModel::imageUrl() const
+{
+    return get("image_url").toString();
+}
+
+void ClothingTimeModel::setImageUrl(const QString &url)
+{
+    set("image_url", url);
+}
+
 void ClothingTimeModel::setImage(const QString &image)
 {
     set("image", image);

@@ -26,6 +26,7 @@
 #include <system/web/model/AbstractModel_p.h>
 
 #include <system/web/form/CharField.h>
+#include <system/web/form/DateField.h>
 #include <system/web/form/ImageField.h>
 
 #include <QtCore/QDebug>
@@ -87,4 +88,19 @@ void ClothingTimeModel::setImage(const QString &image)
 PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::imageField()
 {
     return field<PublicServerSystem::Web::Form::ImageField>("image", "Image");
+}
+
+QDate ClothingTimeModel::startDate() const
+{
+    return get("start_date").toDate();
+}
+
+void ClothingTimeModel::setStartDate(const QDate &date)
+{
+    set("start_date", date);
+}
+
+PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::startDateField()
+{
+    return field<PublicServerSystem::Web::Form::DateField>("start_date", "Start date");
 }

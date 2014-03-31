@@ -29,6 +29,8 @@
 #include <system/web/model/AbstractModel.h>
 #include <system/web/model/ModelManager.h>
 
+#include <QtCore/QDate>
+
 class ClothingTimeModelPrivate;
 
 class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
@@ -39,6 +41,8 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
         Q_PROPERTY(QString image READ image WRITE setImage)
         Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* image_field READ imageField)
         Q_PROPERTY(QString image_url READ imageUrl WRITE setImageUrl)
+        Q_PROPERTY(QDate start_date READ startDate WRITE setStartDate)
+        Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* start_date_field READ startDateField)
     public:
         explicit ClothingTimeModel(QObject *parent = 0);
         ClothingTimeModel(arangodb::Document * doc, QObject *parent = 0);
@@ -57,6 +61,12 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
         void setImageUrl(const QString & url);
 
         PublicServerSystem::Web::Form::AbstractFormField * imageField();
+
+        // Start date
+        QDate startDate() const;
+        void setStartDate(const QDate & date);
+
+        PublicServerSystem::Web::Form::AbstractFormField * startDateField();
 
         PU_DECLARE_MANAGER(ClothingTimeModel);
 

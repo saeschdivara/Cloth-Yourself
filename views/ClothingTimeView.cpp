@@ -66,10 +66,10 @@ void ClothingTimeView::render(QTextStream &stream,
     if ( form.isValid() ) {
         form.syncModel();
 
-        QString filePath = model->image();
+        QString filePath = postData.value(model->imageField()->fieldWidgetName());
         QFile file(filePath);
 
-        if ( file.open(QIODevice::ReadWrite) ) {
+        if ( !filePath.isEmpty() && file.open(QIODevice::ReadWrite) ) {
             // TODO: review this
             QString mediaPath = realPath(QDir::currentPath()) + "media-files";
             QString mediaUrl = ClothingTimeModel::objects->getCollectionName() + "/" + getFileName(filePath);
@@ -89,6 +89,9 @@ void ClothingTimeView::render(QTextStream &stream,
             else {
                 qDebug() << QString("file.copy(%1)").arg(newFilePath) << file.errorString();
             }
+        }
+        else {
+            form.save();
         }
 
     }

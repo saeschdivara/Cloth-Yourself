@@ -3,7 +3,7 @@
 {% block content %}
     {% for clothing_time in times %}
         <div class="clothing-time-container">
-            <h1>{{ clothing_time.title }}</h1>
+            <h1>{{ clothing_time.title }} ({{ clothing_time.start_date }} - {{ clothing_time.end_date }})</h1>
 
             {% if clothing_time.image_url %}
                 <img src="{{ MEDIA_URL }}{{ clothing_time.image_url }}" />

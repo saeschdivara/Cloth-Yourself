@@ -38,11 +38,16 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
         Q_OBJECT
         Q_PROPERTY(QString title READ title WRITE setTitle)
         Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* title_field READ titleField)
+
         Q_PROPERTY(QString image READ image WRITE setImage)
         Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* image_field READ imageField)
         Q_PROPERTY(QString image_url READ imageUrl WRITE setImageUrl)
+
         Q_PROPERTY(QDate start_date READ startDate WRITE setStartDate)
         Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* start_date_field READ startDateField)
+
+        Q_PROPERTY(QDate end_date READ endDate WRITE setEndDate)
+        Q_PROPERTY(PublicServerSystem::Web::Form::AbstractFormField* end_date_field READ endDateField)
     public:
         explicit ClothingTimeModel(QObject *parent = 0);
         ClothingTimeModel(arangodb::Document * doc, QObject *parent = 0);
@@ -67,6 +72,12 @@ class ClothingTimeModel : public PublicServerSystem::Web::Model::AbstractModel
         void setStartDate(const QDate & date);
 
         PublicServerSystem::Web::Form::AbstractFormField * startDateField();
+
+        // End date
+        QDate endDate() const;
+        void setEndDate(const QDate & date);
+
+        PublicServerSystem::Web::Form::AbstractFormField * endDateField();
 
         PU_DECLARE_MANAGER(ClothingTimeModel);
 

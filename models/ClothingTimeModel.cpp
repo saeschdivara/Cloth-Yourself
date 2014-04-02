@@ -104,3 +104,18 @@ PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::startDateFi
 {
     return field<PublicServerSystem::Web::Form::DateField>("start_date", "Start date");
 }
+
+QDate ClothingTimeModel::endDate() const
+{
+    return get("end_date").toDate();
+}
+
+void ClothingTimeModel::setEndDate(const QDate &date)
+{
+    set("end_date", date);
+}
+
+PublicServerSystem::Web::Form::AbstractFormField *ClothingTimeModel::endDateField()
+{
+    return field<PublicServerSystem::Web::Form::DateField>("end_date", "End date");
+}
